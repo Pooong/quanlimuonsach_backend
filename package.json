@@ -1,0 +1,35 @@
+{
+	"name": "quanlimuonsach_backend",
+	"version": "1.0.0",
+	"description": "quan li muon sach",
+	"main": "app.js",
+	"scripts": {
+		"start": "nodemon app.js",
+		"test": "Nodejs , expressjs"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Pooong/quanlimuonsach_frontend.git"
+	},
+	"keywords": [
+		"expressJS",
+		"NodeJs",
+		"quan",
+		"li",
+		"muon",
+		"sach"
+	],
+	"author": "Tran van be than",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Pooong/quanlimuonsach_frontend/issues"
+	},
+	"homepage": "https://github.com/Pooong/quanlimuonsach_frontend#readme",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"express": "^4.19.2"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.0"
+	}
+}
