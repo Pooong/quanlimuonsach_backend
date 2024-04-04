@@ -23,8 +23,8 @@ class PublishedController {
 
 	async addProduct(req, res, next) {
 		try {
-			const TenNxb = req.body.tenNxb;
-			const DiaChi = req.body.diaChi;
+			const TenNxb = req.body.TenNxb;
+			const DiaChi = req.body.DiaChi;
 			const existingPublished = await Published.findOne({ TenNxb });
 			if (existingPublished) {
 				return res.json({ update: "Nhà Xuất bản đã tồn tại" });

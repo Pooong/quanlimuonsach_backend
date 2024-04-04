@@ -3,7 +3,6 @@ const NhanVien = require("../models/StaffModel");
 const userServices = require("../../services/userService");
 const multer = require("multer");
 const storage = require("../../services/uploadImage");
-
 class Authentication {
 	async createStaff(req, res, next) {
 		const upload = multer({ storage: storage }).single("avatar");
@@ -18,6 +17,7 @@ class Authentication {
 					const Password = req.body.password;
 					const DiaChi = req.body.address;
 					const SoDienThoai = req.body.phone;
+
 					const hashedPassword = await userServices.hashPassword(Password);
 					const ChucVu = req.body.position;
 					const Avatar = req.file ? req.file.originalname : null;
@@ -48,23 +48,24 @@ class Authentication {
 	}
 
 	async createUser(req, res, next) {
-		const upload = multer({ storage: storage }).single("avatar");
+		const upload = multer({ storage: storage }).single("Avatar");
 		upload(req, res, async function (err) {
 			if (err instanceof multer.MulterError) {
-				return res.status(400).json({ error: "Lỗi tải lên tệp" });
+				return res.status(400).json(err.message);
 			} else if (err) {
-				return res.status(500).json({ error: "Lỗi tải lên tệp" });
+				return res.status(500).json({ error: "Lỗi tải lên tệp V2" });
 			} else {
 				try {
-					const Ten = req.body.username;
-					const NgaySinh = req.body.birth;
-					const Phai = req.body.sex;
-					const DiaChi = req.body.address;
-					const DienThoai = req.body.phone;
-					const Password = req.body.password;
-					const hashedPassword = await userServices.hashPassword(Password);
+					const Ten = req.body.Ten;
+					const NgaySinh = req.body.NgaySinh;
+					const Phai = req.body.Phai;
+					const DiaChi = req.body.DiaChi;
+					const DienThoai = req.body.DienThoai;
+					const Password = req.body.Password;
 					const Avatar = req.file ? req.file.originalname : null;
 					const existingUser = await DocGia.findOne({ DienThoai });
+					const hashedPassword = await userServices.hashPassword(Password);
+
 					if (existingUser) {
 						return res.json({ error: "Người dùng đã tồn tại" });
 					} else {
@@ -77,6 +78,7 @@ class Authentication {
 							Password: hashedPassword,
 							Avatar,
 						});
+						console.log("SAVING____________");
 						await newDocGia.save();
 						return res.json({
 							message: "Đăng ký người dùng thành công",
