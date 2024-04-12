@@ -1,5 +1,5 @@
-const DocGia = require("../models/ReaderModel");
-const NhanVien = require("../models/StaffModel");
+const DocGia = require("../models/DocGia");
+const NhanVien = require("../models/NhanVien");
 const userServices = require("../../services/userService");
 const multer = require("multer");
 const storage = require("../../services/uploadImage");

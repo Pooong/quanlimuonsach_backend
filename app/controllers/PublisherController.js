@@ -1,4 +1,4 @@
-const Published = require("../models/PublisherModel");
+const Published = require("../models/NhaXuatBan");
 
 class PublishedController {
 	async listProduct(req, res, next) {

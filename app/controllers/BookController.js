@@ -1,4 +1,4 @@
-const Sach = require("../models/BookModel");
+const Sach = require("../models/Sach");
 const multer = require("multer");
 const storage = require("../../services/uploadImage");
 
