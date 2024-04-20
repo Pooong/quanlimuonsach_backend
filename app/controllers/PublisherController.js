@@ -47,7 +47,7 @@ class PublishedController {
 		}
 	}
 
-	async updateProduct(req, res, next) {
+	async updatePublisher(req, res, next) {
 		try {
 			const id = req.params.id;
 			const existingPublished = await Published.findById(id);
@@ -69,7 +69,7 @@ class PublishedController {
 		}
 	}
 
-	async deleteProduct(req, res, next) {
+	async deletePublisher(req, res, next) {
 		try {
 			const id = req.params.id;
 			const existingPublished = await Published.findById(id);
