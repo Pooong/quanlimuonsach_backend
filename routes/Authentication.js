@@ -10,7 +10,7 @@ router.post("/login/staff", authenticationController.loginStaff);
 router.get("/logout", authenticationController.logout);
 router.get("/info/staff/:id", authenticationController.infoStaff);
 router.put("/edit/staff/:id",upload.single("avatar"), authenticationController.editProfileStaff);
-router.get("/:id", authenticationController.infoUser);
+router.get("/info/:id", authenticationController.infoUser);
 router.put("/edit/:id", upload.single("avatar"),authenticationController.editProfile);
 
 module.exports = router;

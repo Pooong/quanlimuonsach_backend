@@ -1,4 +1,5 @@
 const Published = require("../models/NhaXuatBan");
+const NhaXuatBan = require("../models/NhaXuatBan");
 
 class PublishedController {
 	
@@ -27,26 +28,33 @@ class PublishedController {
 	}
 
 	async addPublisher(req, res, next) {
+		const data = req.body;
+		console.log(req.body);
+		console.log("OKW")
 		try {
-			const TenNxb = req.body.TenNxb;
-			const DiaChi = req.body.DiaChi;
+			const TenNxb = req.body.tenNxb;
+			const DiaChi = req.body.diaChi;
+			console.log(TenNxb,DiaChi);
 			const existingPublished = await Published.findOne({ TenNxb });
 			if (existingPublished) {
-				return res.json({ update: "Nhà Xuất bản đã tồn tại" });
+			  return res.json({ update: "Nhà Xuất bản đã tồn tại" });
 			} else {
-				const newPublished = new Published({
-					TenNxb,
-					DiaChi,
-				});
-				await newPublished.save();
-				return res.json({ message: "Đã thêm nhà xuất bản" });
+			  const newNhaXuatBan = new Published({
+				TenNxb,
+				DiaChi,
+			  });
+			  await newNhaXuatBan.save();
+			  return res.json({ message: "Đã thêm nhà xuất bản" });
 			}
-		} catch (error) {
+		  } catch (error) {
 			console.log("Lỗi khi thêm nhà xuất bản", error);
-			res.status(500).json({ message: "Lỗi khi thêm nhà xuất bản", error: error.message });
-		}
+			res
+			  .status(500)
+			  .json({ message: "Lỗi khi thêm nhà xuất bản", error: error.message });
+		  }
 	}
 
+	
 	async updatePublisher(req, res, next) {
 		try {
 			const id = req.params.id;

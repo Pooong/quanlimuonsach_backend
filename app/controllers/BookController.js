@@ -34,21 +34,17 @@ class BookController {
 		        if (!req.file) {
 					return res.status(500).json({ "error": "Chưa có image" })
                 }
-
+				console.log(req.body)
                  const filename =  req.file.filename ;
 				 req.body.HinhSach=filename;
 
                  const newSach = new  Sach(req.body);
+				 console.log("OK")
                  newSach.save();
                  	return res.status(201).json({ "massage": "Thêm sách thành công" });
-
-
-
 		}
 		catch (e){
-			
-
-			// sửa lại theo cái cảu ông là ok
+			res.status(500).json({ message: err.message });
 		}
 	}
 

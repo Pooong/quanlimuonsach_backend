@@ -1,4 +1,4 @@
-const authentication = require("./authentication");
+const authentication = require("./Authentication");
 const published = require("./Published");
 const reader = require("./Reader");
 const rent = require("./RentBook");
