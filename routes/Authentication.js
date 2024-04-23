@@ -12,5 +12,6 @@ router.get("/info/staff/:id", authenticationController.infoStaff);
 router.put("/edit/staff/:id",upload.single("avatar"), authenticationController.editProfileStaff);
 router.get("/info/:id", authenticationController.infoUser);
 router.put("/edit/:id", upload.single("avatar"),authenticationController.editProfile);
+router.delete("/delete/:id", authenticationController.deleteUser);
 
 module.exports = router;

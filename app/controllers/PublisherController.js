@@ -32,8 +32,8 @@ class PublishedController {
 		console.log(req.body);
 		console.log("OKW")
 		try {
-			const TenNxb = req.body.tenNxb;
-			const DiaChi = req.body.diaChi;
+			const TenNxb = req.body.TenNxb;
+			const DiaChi = req.body.DiaChi;
 			console.log(TenNxb,DiaChi);
 			const existingPublished = await Published.findOne({ TenNxb });
 			if (existingPublished) {
@@ -58,13 +58,16 @@ class PublishedController {
 	async updatePublisher(req, res, next) {
 		try {
 			const id = req.params.id;
+			console.log(id);
+			console.log("HELLO DA CONNECT VO UPDATE");
 			const existingPublished = await Published.findById(id);
+			console.log(req.body);
 			if (existingPublished) {
-				if (req.body.tenNxb) {
-					existingPublished.TenNxb = req.body.tenNxb;
+				if (req.body.TenNxb) {
+					existingPublished.TenNxb = req.body.TenNxb;
 				}
-				if (req.body.diaChi) {
-					existingPublished.DiaChi = req.body.diaChi;
+				if (req.body.DiaChi) {
+					existingPublished.DiaChi = req.body.DiaChi;
 				}
 				await existingPublished.save();
 				return res.json({ message: "Nhà xuất bản đã được cập nhật" });
@@ -80,6 +83,7 @@ class PublishedController {
 	async deletePublisher(req, res, next) {
 		try {
 			const id = req.params.id;
+			console.log(id);
 			const existingPublished = await Published.findById(id);
 			if (!existingPublished) {
 				return res.status(404).json({ error: "Không tìm thấy nhà xuất bản" });

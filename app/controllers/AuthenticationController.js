@@ -200,7 +200,6 @@ class Authentication {
 	}
 
 	async editProfileStaff(req, res, next) {
-
 				try {
 					const id = req.params.id;
 					const existingStaff = await NhanVien.findById(id);
@@ -211,7 +210,7 @@ class Authentication {
 						if (req.body.address) {
 							existingStaff.DiaChi = req.body.address;
 						}
-if (req.body.phone) {
+					if (req.body.phone) {
 							existingStaff.SoDienThoai = req.body.phone;
 						}
 						if (req.body.position) {
@@ -236,7 +235,22 @@ if (req.body.phone) {
 		
 	}
 
-	async dashboard(req, res, next) {}
+	async deleteUser(req,res,next){
+		try {
+			const id = req.params.id;
+			console.log(id);
+			const existingPublished = await DocGia.findById(id);
+			if (!existingPublished) {
+				return res.status(404).json({ error: "Không tìm thấy nhà xuất bản" });
+			} else {
+				await DocGia.findByIdAndDelete(id);
+				return res.send({ message: "Xóa nhà xuất bản thành công" });
+			}
+		} catch (error) {
+			console.log("Lỗi khi xóa nhà xuất bản", error);
+			res.status(500).json({ message: "Lỗi khi xóa nhà xuất bản" });
+		}
+	}
 }
 
 module.exports = new Authentication();

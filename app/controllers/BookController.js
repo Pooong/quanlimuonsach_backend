@@ -37,9 +37,7 @@ class BookController {
 				console.log(req.body)
                  const filename =  req.file.filename ;
 				 req.body.HinhSach=filename;
-
                  const newSach = new  Sach(req.body);
-				 console.log("OK")
                  newSach.save();
                  	return res.status(201).json({ "massage": "Thêm sách thành công" });
 		}
